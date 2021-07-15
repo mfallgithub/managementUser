@@ -16,12 +16,19 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/management")
+/***
+ * Controller for management of users
+ * */
 public class UserController {
     @Autowired
     private UserService service;
     @Autowired
     UserRepository repository;
     final Logger LOGGER= LoggerFactory.getLogger(UserController.class);
+    /**
+     * Methode to register a newUser
+     * @param newUser
+     * */
     @PostMapping(value = "/user/register")
     public ResponseEntity<User> saveUser(@RequestBody User newUser) throws BusinessException {
         List<User>users=repository.findAll();
@@ -34,7 +41,10 @@ public class UserController {
         userRegistered = service.saveUser(newUser);
         return ResponseEntity.ok().body(userRegistered);
     }
-
+    /****
+     * Method to find a user by username
+     * @param username
+     */
     @GetMapping("/user/find")
     public ResponseEntity<User> findUserDetailsByUsername(@RequestParam(name = "username") String username) throws BusinessException {
         User userFound = null;

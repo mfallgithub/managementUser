@@ -16,18 +16,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository repository;
     final Logger LOGGER= LoggerFactory.getLogger(UserController.class);
+    /**
+     * implement the method to register a newUser
+     * @param newUser
+     * */
     @Override
-    public User saveUser(User user) throws BusinessException {
+    public User saveUser(User newUser) throws BusinessException {
         User userSaved = null;
         try {
-            userSaved = repository.save(user);
+            userSaved = repository.save(newUser);
         } catch (Exception e) {
-            throw new BusinessException(HttpStatus.INTERNAL_SERVER_ERROR, user.getUsername());
+            throw new BusinessException(HttpStatus.INTERNAL_SERVER_ERROR, newUser.getUsername());
         }
 
         return userSaved;
     }
-
+    /****
+     * Implement the method to find a user by username
+     * @param username
+     */
     @Override
     public User findUserDetailsByUsername(String username) throws BusinessException {
         User userFound = null;

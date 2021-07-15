@@ -3,7 +3,11 @@ package fr.airfrance.management.model;
 
 import javax.persistence.*;
 import java.util.Date;
-
+/**
+ * @Author Moustapha FALL
+ * Class to manage users
+ *
+ * */
 @Entity
 @Table(name = "users")
 public class User {
